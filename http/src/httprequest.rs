@@ -41,12 +41,12 @@ impl From<String> for HttpRequest {
 
         for line in req.lines() {
             if line.contains("HTTP") {
-                let (method, resource, version) = process_req_line(&line);
+                let (method, resource, version) = process_req_line(line);
                 parsed_method = method;
                 parsed_resource = resource;
                 parsed_version = version;
             } else if line.contains(":") {
-                let (key, value) = process_header_line(&line);
+                let (key, value) = process_header_line(line);
                 parsed_headers.insert(key, value);
             } else {
                 parsed_msg_body = line;
